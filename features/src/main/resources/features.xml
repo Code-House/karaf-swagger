@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="karaf-swagger-${project.version}"
+    xmlns="http://karaf.apache.org/xmlns/features/v1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://karaf.apache.org/xmlns/features/v1.0.0
+        http://karaf.apache.org/xmlns/features/v1.0.0
+    ">
+
+    <repository>mvn:org.code-house.jackson/features/${code-house-jackson.version}/xml/features</repository>
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>
+
+    <feature name="swagger-annotations" version="${swagger.version}">
+        <bundle>mvn:io.swagger/swagger-annotations/${swagger.version}</bundle>
+    </feature>
+
+    <feature name="swagger-bundle" version="${swagger.version}">
+        <feature version="${swagger.version}">swagger-annotations</feature>
+        <feature version="${jackson.version}">jackson-dataformat-yaml</feature>
+        <feature version="${jackson.version}">jackson-jaxrs-json-provider</feature>
+
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-validation_1.0_spec/1.1</bundle>
+        <bundle dependency="true">mvn:com.google.guava/guava/${guava.version}</bundle>
+        <bundle>mvn:org.apache.commons/commons-lang3/${commons-lang3.version}</bundle>
+        <bundle>mvn:org.javassist/javassist/3.18.2-GA</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.reflections/0.9.9_1</bundle>
+        <bundle>mvn:org.code-house.swagger/bundle/${project.version}</bundle>
+    </feature>
+
+    <feature name="swagger-core" version="${project.version}">
+        <feature version="${cxf.version}">cxf-jaxrs</feature>
+        <feature version="${swagger.version}">swagger-bundle</feature>
+
+        <bundle>mvn:org.code-house.swagger/core/${project.version}</bundle>
+    </feature>
+
+    <feature name="swagger-ui" version="${project.version}">
+        <feature version="${karaf.version}">http-whiteboard</feature>
+
+        <bundle>mvn:org.code-house.swagger/ui/${project.version}</bundle>
+    </feature>
+
+    <feature name="swagger" version="${project.version}">
+        <feature version="${swagger.version}">swagger-annotations</feature>
+        <feature version="${project.version}">swagger-core</feature>
+        <feature version="${project.version}">swagger-ui</feature>
+    </feature>
+
+</features>
