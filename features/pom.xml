@@ -66,7 +66,7 @@
                     <execution>
                         <id>create-kar</id>
                         <goals>
-                            <goal>features-create-kar</goal>
+                            <goal>kar</goal>
                         </goals>
                     </execution>
                 </executions>

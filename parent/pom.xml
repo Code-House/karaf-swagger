@@ -17,21 +17,21 @@
     <description>Swagger integration parent</description>
 
     <properties>
-        <cxf.version>3.0.6</cxf.version>
-        <karaf.version>3.0.4</karaf.version>
-        <swagger.version>1.5.0</swagger.version>
+        <cxf.version>3.1.5</cxf.version>
+        <karaf.version>4.0.4</karaf.version>
+        <swagger.version>1.5.7</swagger.version>
         <osgi.version>5.0.0</osgi.version>
 
-        <jackson.version>2.5.3</jackson.version>
+        <jackson.version>2.6.5</jackson.version>
         <code-house-jackson.version>3.0.0-SNAPSHOT</code-house-jackson.version>
 
-        <guava.version>15.0</guava.version>
+        <guava.version>18.0</guava.version>
         <commons-lang3.version>3.4</commons-lang3.version>
 
         <pax-exam.version>4.5.0</pax-exam.version>
 
         <geronimo-atinject-spec.version>1.0</geronimo-atinject-spec.version>
-        <geronimo-servlet3-spec.version>1.0</geronimo-servlet3-spec.version>
+        <servlet-spec.version>3.1.0</servlet-spec.version>
         <servicemix-jaxrs-spec.version>2.4.0</servicemix-jaxrs-spec.version>
 
         <webjars-swagger-ui.version>2.1.1</webjars-swagger-ui.version>
@@ -115,6 +115,11 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.karaf</groupId>
+                <artifactId>org.apache.karaf.util</artifactId>
+                <version>${karaf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf</groupId>
                 <artifactId>apache-karaf</artifactId>
                 <version>${karaf.version}</version>
                 <type>zip</type>
@@ -132,9 +137,9 @@
                 <version>${geronimo-atinject-spec.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-servlet_3.0_spec</artifactId>
-                <version>${geronimo-servlet3-spec.version}</version>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet-spec.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.servicemix.specs</groupId>
@@ -145,6 +150,11 @@
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.core</artifactId>
+                <version>${osgi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.compendium</artifactId>
                 <version>${osgi.version}</version>
             </dependency>
 
