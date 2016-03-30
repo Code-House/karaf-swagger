@@ -8,4 +8,16 @@
         </bean>
     </service>
 
+    <service interface="org.ops4j.pax.web.extender.whiteboard.WelcomeFileMapping">
+        <bean
+            class="org.ops4j.pax.web.extender.whiteboard.runtime.DefaultWelcomeFileMapping">
+            <property name="redirect" value="true" />
+            <property name="welcomeFiles">
+                <array>
+                    <value>index.html</value>
+                </array>
+            </property>
+        </bean>
+    </service>
+
 </blueprint>
