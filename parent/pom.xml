@@ -17,26 +17,26 @@
     <description>Swagger integration parent</description>
 
     <properties>
-        <cxf.version>3.1.5</cxf.version>
-        <karaf.version>4.0.4</karaf.version>
-        <swagger.version>1.5.7</swagger.version>
-        <osgi.version>5.0.0</osgi.version>
+        <cxf.version>3.3.3</cxf.version>
+        <karaf.version>4.2.6</karaf.version>
+        <swagger.version>1.5.21</swagger.version>
+        <osgi.version>6.0.0</osgi.version>
 
-        <jackson.version>2.6.5</jackson.version>
-        <code-house-jackson.version>3.0.0-SNAPSHOT</code-house-jackson.version>
+        <jackson.version>2.9.9</jackson.version>
+        <code-house-jackson.version>2.9.0-SNAPSHOT</code-house-jackson.version>
 
         <guava.version>18.0</guava.version>
         <commons-lang3.version>3.4</commons-lang3.version>
 
-        <pax-exam.version>4.5.0</pax-exam.version>
+        <pax-exam.version>4.13.1</pax-exam.version>
 
         <geronimo-atinject-spec.version>1.0</geronimo-atinject-spec.version>
         <servlet-spec.version>3.1.0</servlet-spec.version>
-        <servicemix-jaxrs-spec.version>2.4.0</servicemix-jaxrs-spec.version>
+        <servicemix-jaxrs-spec.version>2.9.1</servicemix-jaxrs-spec.version>
 
-        <webjars-swagger-ui.version>2.1.1</webjars-swagger-ui.version>
+        <webjars-swagger-ui.version>3.23.5</webjars-swagger-ui.version>
 
-        <felix-bundle-plugin.version>2.5.4</felix-bundle-plugin.version>
+        <felix-bundle-plugin.version>4.2.1</felix-bundle-plugin.version>
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <servicemix-depends-plugin.version>1.2</servicemix-depends-plugin.version>
     </properties>
@@ -143,18 +143,18 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.servicemix.specs</groupId>
-                <artifactId>org.apache.servicemix.specs.jsr339-api-2.0</artifactId>
+                <artifactId>org.apache.servicemix.specs.jaxrs-api-2.1</artifactId>
                 <version>${servicemix-jaxrs-spec.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.core</artifactId>
+                <artifactId>osgi.core</artifactId>
                 <version>${osgi.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.compendium</artifactId>
+                <artifactId>osgi.cmpn</artifactId>
                 <version>${osgi.version}</version>
             </dependency>
 

@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>features</artifactId>
+    <packaging>feature</packaging>
 
     <name>Code-House :: Swagger :: Karaf Features</name>
     <description>Swagger features</description>
@@ -28,52 +29,48 @@
             <groupId>org.code-house.swagger</groupId>
             <artifactId>ui</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>framework</artifactId>
+            <version>${karaf.version}</version>
+            <type>kar</type>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>attach-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <artifacts>
-                                <artifact>
-                                    <file>${project.build.outputDirectory}/features.xml</file>
-                                    <classifier>features</classifier>
-                                    <type>xml</type>
-                                </artifact>
-                            </artifacts>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>karaf-maven-plugin</artifactId>
+                <version>${karaf.version}</version>
+                <extensions>true</extensions>
                 <executions>
                     <execution>
-                        <id>create-kar</id>
+                        <id>verify</id>
+                        <phase>integration-test</phase>
                         <goals>
-                            <goal>kar</goal>
+                            <goal>verify</goal>
                         </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>mvn:org.apache.karaf.features/framework/${karaf.version}/xml/features</descriptor>
+                                <descriptor>mvn:org.apache.karaf.features/standard/${karaf.version}/xml/features</descriptor>
+                                <descriptor>file:${project.build.directory}/feature/feature.xml</descriptor>
+                            </descriptors>
+                            <distribution>org.apache.karaf.features:framework</distribution>
+                            <javase>1.8</javase>
+                            <framework>
+                                <feature>framework</feature>
+                                <feature>standard</feature>
+                            </framework>
+                            <features>
+                                <feature>swagger*</feature>
+                            </features>
+                        </configuration>
                     </execution>
                 </executions>
-               <configuration>
-                    <featuresFile>${project.build.outputDirectory}/features.xml</featuresFile>
-                </configuration>
-                <extensions>true</extensions>
             </plugin>
         </plugins>
     </build>

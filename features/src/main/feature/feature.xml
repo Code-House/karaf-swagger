@@ -18,6 +18,7 @@
         <feature version="${swagger.version}">swagger-annotations</feature>
         <feature version="${jackson.version}">jackson-dataformat-yaml</feature>
         <feature version="${jackson.version}">jackson-jaxrs-json-provider</feature>
+        <feature>http</feature>
 
         <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-validation_1.0_spec/1.1</bundle>
         <bundle dependency="true">mvn:com.google.guava/guava/${guava.version}</bundle>

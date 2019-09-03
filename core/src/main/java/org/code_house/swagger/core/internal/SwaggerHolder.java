@@ -1,7 +1,10 @@
 package org.code_house.swagger.core.internal;
 
+import io.swagger.annotations.Api;
 import io.swagger.jaxrs.Reader;
 import io.swagger.models.*;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;

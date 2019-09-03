@@ -4,17 +4,20 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.config.FilterFactory;
 import io.swagger.core.filter.SpecFilter;
 import io.swagger.core.filter.SwaggerSpecFilter;
-import io.swagger.jaxrs.listing.ApiListingResource;
+import io.swagger.jaxrs.listing.BaseApiListingResource;
 import io.swagger.models.Swagger;
 import io.swagger.util.Yaml;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletConfig;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
 
-public class EnhancedApiListingResource extends ApiListingResource {
+public class EnhancedApiListingResource extends BaseApiListingResource {
 
     private final SwaggerHolder holder;
 
@@ -86,5 +89,46 @@ public class EnhancedApiListingResource extends ApiListingResource {
             e.printStackTrace();
         }
         return Response.status(404).build();
+    }
+
+    private static Map<String, List<String>> getQueryParams(MultivaluedMap<String, String> params) {
+        Map<String, List<String>> output = new HashMap<String, List<String>>();
+        if (params != null) {
+            for (String key : params.keySet()) {
+                List<String> values = params.get(key);
+                output.put(key, values);
+            }
+        }
+        return output;
+    }
+
+    private static Map<String, String> getCookies(HttpHeaders headers) {
+        Map<String, String> output = new HashMap<String, String>();
+        if (headers != null) {
+            for (String key : headers.getCookies().keySet()) {
+                Cookie cookie = headers.getCookies().get(key);
+                output.put(key, cookie.getValue());
+            }
+        }
+        return output;
+    }
+
+    private static Map<String, List<String>> getHeaders(HttpHeaders headers) {
+        Map<String, List<String>> output = new HashMap<String, List<String>>();
+        if (headers != null) {
+            for (String key : headers.getRequestHeaders().keySet()) {
+                List<String> values = headers.getRequestHeaders().get(key);
+                output.put(key, values);
+            }
+        }
+        return output;
+    }
+
+    private static String getBasePath(UriInfo uriInfo) {
+        if (uriInfo != null) {
+            return uriInfo.getBaseUri().getPath();
+        } else {
+            return "/";
+        }
     }
 }

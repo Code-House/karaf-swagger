@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import static org.ops4j.pax.exam.CoreOptions.*;
 
+import java.io.File;
 import java.util.EnumSet;
 
 import javax.inject.Inject;
@@ -34,10 +35,12 @@ public class FeaturesIntegrationTest {
     public Option[] config() {
         String featuresUrl = maven("org.code-house.swagger", "features").classifier("features").type("xml").versionAsInProject().getURL();
         String karafVersion = MavenUtils.getArtifactVersion("org.apache.karaf", "apache-karaf");
+
         MavenArtifactUrlReference frameworkURL = maven("org.apache.karaf", "apache-karaf").type("zip").version(karafVersion);
 
         return new Option[]{
-            karafDistributionConfiguration().karafVersion(karafVersion).frameworkUrl(frameworkURL),
+            keepRuntimeFolder(),
+            karafDistributionConfiguration().karafVersion(karafVersion).frameworkUrl(frameworkURL).unpackDirectory(new File("target/karaf")),
             editConfigurationFileExtend("etc/org.apache.karaf.features.cfg", "featuresRepositories", "," + featuresUrl)
         };
     }
